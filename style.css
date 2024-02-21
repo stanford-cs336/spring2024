@@ -287,3 +287,27 @@ h3 {
   #schedule td:nth-of-type(4):before { content: "Events:"; }
   #schedule td:nth-of-type(5):before { content: "Deadlines:"; }
 }
+
+#unreleased-message {
+  background: #d62728;
+  box-sizing: border-box;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  left: 0;
+  min-height: 3em;
+  padding: 0.5em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10000;
+}
+
+#unreleased-message + div {
+  margin-top: 3em;
+}
+
+#unreleased-message a {
+  color: #fff;
+  text-decoration:underline;
+}

@@ -1,1 +1,415 @@
-Let's build some LMs from scratch!
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <title>Stanford CS336 | Language Modeling from Scratch</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand brand" href="index.html">CS336</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="index.html#coursework">Coursework</a>
+            </li>
+            <li>
+              <a href="index.html#schedule">Schedule</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="header" style="text-align:center">
+      <a href="http://nlp.stanford.edu/">
+        <img src="images/stanford-nlp-logo-new.jpg" class="logo-left">
+      </a>
+      <a href="http://stanford.edu/">
+        <img src="images/stanfordlogo.jpg" class="logo-right">
+      </a>
+      <h1>CS336: Language Modeling from Scratch</h1>
+      <h3>Stanford / Spring 2024</h3>
+    </div>
+    <!-- Intro -->
+    <div class="container sec" id="intro">
+        <p>
+            <font style="color: #8c1515; font-weight: bold">
+                Please <a href="https://docs.google.com/forms/d/e/1FAIpQLSdW0HgT8MHzdM8cgapLWqX2ZPP1yHSX52R_r5JzF52poqXsHg/viewform">fill out this form</a> if you would like to sign up for CS336. Due to high compute requirements for this class, we
+                unfortunately have to limit enrollment.
+            </font>
+        </p>
+        <p>
+            Language models serve as the cornerstone of modern natural language processing
+            (NLP) applications and open up a new paradigm of having a
+            single general purpose system address a range of downstream tasks. As
+            the field of artificial intelligence (AI), machine learning (ML), and
+            NLP continues to grow, possessing a deep understanding of language
+            models becomes essential for scientists and engineers alike. This course
+            is designed to provide students with a comprehensive understanding of
+            language models by walking them through the entire process of developing
+            their own. Drawing inspiration from operating systems courses that
+            create an entire operating system from scratch, we will lead students
+            through every aspect of language model creation, including data
+            collection and cleansing for pre-training, transformer model
+            construction, model training, and evaluation before deployment.
+        </p>
+    </div>
+    <!-- Staff Info -->
+      <div class="container sec" id="people">
+        <!-- <div class="row"> -->
+        <div class="col">
+          <h2>Course Staff</h2>
+          <div class="instructor">
+            <a href="https://thashim.github.io/">
+              <div class="instructorphoto">
+                <img src="images/thashim.jpeg">
+              </div>
+              <div>Tatsunori Hashimoto</div>
+            </a>
+            <div>Instructor</div>
+          </div>
+          <div class="instructor">
+            <a href="https://cs.stanford.edu/~pliang/">
+              <div class="instructorphoto">
+                <img src="images/pliang.jpeg">
+              </div>
+              <div>Percy Liang</div>
+            </a>
+            <div>Instructor</div>
+          </div>
+          <div class="instructor">
+            <a href="https://cs.stanford.edu/~nfliu/">
+              <div class="instructorphoto">
+                <img src="images/nfliu.jpg">
+              </div>
+              <div>Nelson Liu</div>
+            </a>
+            <div>TA</div>
+          </div>
+          <div class="instructor">
+            <a href="https://gpoesia.com/">
+              <div class="instructorphoto">
+                <img src="images/poesia.jpeg">
+              </div>
+              <div>Gabriel Poesia</div>
+            </a>
+            <div>TA</div>
+          </div>
+        </div>
+      </div>
+      <!-- Logistics -->
+      <div class="sechighlight">
+          <div class="container sec" id="logistics">
+      <h2>Logistics</h2>
+      <ul>
+        <li>
+            <b>Lectures:</b> are on Monday/Wednesday 1:30 PM - 2:50 PM Pacific
+            Time in <a href="http://campus-map.stanford.edu/?srch=200-305">200-305</a> (Lane
+            History Corner). In-person lectures will start with the first
+            lecture.
+        </li>
+        <li>
+            <b>Office hours</b>
+            <ul>
+                <li><b>Tatsunori Hashimoto</b>: Tue 9:30-10:30am @ Gates 354</li>
+                <li><b>Percy Liang</b>: Tue 9:30-10:30am @ Gates 354</li>
+                <li><b>Nelson Liu</b>: Tue 9:30-10:30am @ Gates 354</li>
+                <li><b>Gabriel Poesia</b>: Tue 9:30-10:30am @ Gates 354</li>
+            </ul>
+        </li>
+        <li>
+            <b>Contact</b>: Students should ask <i>all</i> course-related
+            questions in the Ed forum, where you will also find announcements. You
+            will find the course Ed on the course Canvas page or in the header
+            link above. For external enquiries, emergencies, or personal matters
+            that you don't wish to put in a private Ed post, you can email us at <a href="mailto:cs336-spr2324-staff@lists.stanford.edu"><i>cs336-spr2324-staff@lists.stanford.edu</i></a>.
+          <b>Please send all emails to this mailing list - do not email the instructors directly.</b>
+        </li>
+      </ul>
+    </div>
+      </div>
+  </body>
+    <!-- Content -->
+    <div class="container sec" id="content">
+      <h2>Content</h2>
+      <h3>What is this course about?</h3>
+      <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          bibendum metus nec diam hendrerit mollis. Vestibulum quis dolor non
+          lorem semper volutpat eget sit amet urna. Nullam vitae fringilla nibh,
+          sed suscipit sapien. Integer condimentum rutrum eros, nec iaculis
+          magna gravida elementum. Praesent eget purus sed justo commodo
+          pellentesque. Nulla ultricies laoreet nisl, eu vulputate erat
+          tristique nec. Proin elit ante, aliquet eu dolor eu, posuere
+          vestibulum ipsum. Nunc quis metus dui.
+      </p>
+      <h3>Prerequisites</h3>
+      <ul>
+        <li>
+          <b>Proficiency in Python</b>
+          <p>All class assignments will be in Python (using <a href="https://numpy.org/">NumPy</a> and <a href="https://pytorch.org">PyTorch</a>). If you need to remind yourself of Python, or you're not very familiar with NumPy, you can come to the Python review session in week 1 (listed in the <a href="#schedule">schedule</a>). If you have a lot of programming experience but in a different language (e.g. C/C++/Matlab/Java/Javascript), you will probably be fine. </p>
+        </li>
+        <li>
+          <b>College Calculus, Linear Algebra</b> (e.g. MATH 51, CME 100) <p>You should be comfortable taking (multivariable) derivatives and understanding matrix/vector notation and operations.</p>
+        </li>
+        <li>
+          <b>Basic Probability and Statistics</b> (e.g. CS 109 or equivalent) <p>You should know the basics of probabilities, gaussian distributions, mean, standard deviation, etc.</p>
+        </li>
+        <li>
+          <b>Foundations of Machine Learning</b> (e.g. CS221, CS229, CS230, or CS124) <p>We will be formulating cost functions, taking derivatives and performing optimization with gradient descent. If you already have basic machine learning and/or deep learning knowledge, the course will be easier; however it is possible to take CS224n without it. There are many introductions to ML, in webpage, book, and video form. One approachable introduction is Hal Daum&eacute;’s in-progress <a href="http://ciml.info">
+              <i>A Course in Machine Learning</i>
+            </a>. Reading the first 5 chapters of that book would be good background. Knowing the first 7 chapters would be even better! </p>
+        </li>
+      </ul>
+    </div>
+    <!-- Coursework -->
+    <!-- Note the margin-top:-20px and the <br> serve to make the #coursework hyperlink display correctly (with the h2 header visible) -->
+    <div class="sechighlight">
+      <div class="container sec" id="coursework" style="margin-top:-20px">
+        <br>
+        <h2>Coursework</h2>
+        <h3>Assignments</h3>
+        <ul>
+          <li>
+              <b>There are four assignments in this course</b>:<ul>
+              <li>Assignment 1: Basics</li>
+              <li>Assignment 2: Scaling Up</li>
+              <li>Assignment 3: Data</li>
+              <li>Assignment 4: Alignment</li>
+            </ul>
+          <li>
+            <b>Deadlines</b>: All assignments are due on either a Monday or a Wednesday <i>before class</i> (i.e. before 1:30pm). All deadlines are listed in the <a href="#schedule">schedule</a>.
+          </li>
+          <li>
+            <b>Collaboration</b>: Study groups are allowed, but students must understand and complete their own assignments, and hand in one assignment per student. If you worked in a group, please put the names of the members of your study group at the top of your assignment. Please ask if you have any questions about the collaboration policy.
+          </li>
+          <li>
+            <b>Honor Code</b>: We expect students to not look at solutions or implementations online. Like all other classes at Stanford, we take the student <a href="https://ed.stanford.edu/academics/masters-handbook/honor-code">Honor Code</a> seriously. We sometimes use automated methods to detect overly similar assignment solutions.
+          </li>
+        </ul>
+        <h3>Submitting coursework</h3>
+        <ul>
+            <li>All coursework are submitted via Gradescope by the deadline. Do not submit your coursework via email.</li>
+            <li>If anything goes wrong, please ask a question on Ed or contact a course assistant.</li>
+            <li>You can submit as many times as you’d like until the deadline: we will only grade the last submission.</li>
+            <li>Partial work is better than not submitting any work.</li>
+        </ul>
+        <h3>Late Days</h3>
+        <ul>
+            <li>A homework is ⌈d⌉ days late if it is turned in d days past the due date (note that this means if you are 1 second late, ⌈d⌉=1 and it is 1 day late).</li>
+            <li>Each student has <b>6 late days to use</b>. A late day extends the deadline by 24 hours.</li>
+            <li>
+                Once a student is out a late days, the maximum possible grade
+                for an assigment is decreased by 25% for each day past the deadline.
+                For example, if a student is out of late days and submits one day
+                late, an original grade of 90% on the assignment will be reduced to
+                75%, but an original grade of 72% will be unchanged.
+            </li>
+            <li>You can use up to 3 late days per assignment. <b>Submissions will not be accepted 3 days past the original deadline.</b></li>
+        </ul>
+        <h3>Regrade Requests</h3>
+        <p>
+            If you believe that the course staff made an objective error in
+            grading, you may submit a regrade request on Gradescope within 3 days
+            after the grades are released. Note that we may regrade your entire
+            submission, so that depending on your submission you may actually
+            lose more points than you gain.
+      </div>
+    </div>
+    <!-- Schedule -->
+    <!-- Note the margin-top:-20px and the <br> serve to make the #schedule hyperlink display correctly (with the h2 header visible) -->
+    <div class="container sec" id="schedule" style="margin-top:-20px">
+      <br>
+      <h2>Schedule</h2>
+      <p>
+          Note: this schedule is preliminary, and content is subject to change.
+      </p>
+      <table class="table">
+        <colgroup>
+          <col style="width:15%">
+          <col style="width:15%">
+          <col style="width:40%">
+          <col style="width:10%">
+          <col style="width:10%">
+        </colgroup>
+        <thead>
+          <tr class="active">
+            <th>Date</th>
+            <th>Description</th>
+            <th>Course Materials</th>
+            <th>Events</th>
+            <th>Deadlines</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Mon April 1
+            </td>
+            <td>
+                Overview, Basics (Tokenization)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Wed April 3</td>
+            <td>Basics (Transformers)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+                Mon April 8
+            </td>
+            <td>Basics (Training)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed April 10</td>
+            <td>Basics (Evaluation)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+                Mon April 15
+            </td>
+            <td>Scaling (Transformer enhancements)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Wed April 17</td>
+            <td>Scaling (GPUs, memory, FLOPs)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Mon April 22</td>
+              <td>Scaling (floating point stability)</td>
+              <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed April 24</td>
+              <td>Scaling (parallelism)</td>
+              <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Mon April 29</td>
+              <td>Scaling (FlashAttention)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed May 1</td>
+              <td>Scaling (scaling laws)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Mon May 6</td>
+              <td>Data (datasets, processing)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed May 8</td>
+              <td>Data (filtering)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Mon May 13</td>
+              <td>Data (deduplication)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed May 15</td>
+              <td>Data (reweighting)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Mon May 20</td>
+              <td>Alignment (SFT)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed May 22</td>
+              <td>Alignment (RLHF)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Mon May 27</td>
+              <td>Memorial Day - no classes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed May 29</td>
+              <td>Alignment (datasets, annotation)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Mon June 3</td>
+              <td>Alignment (evaluation, safety)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>Wed June 5</td>
+              <td>Guest Lecture</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- jQuery and Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

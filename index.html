@@ -123,7 +123,7 @@
             </ul>
           </li>
           <li>
-            <b>Contact</b>: Students should ask <i>all</i> course-related questions in the Ed forum, where you will also find announcements. You will find the course Ed on the course Canvas page or in the header link above. For external enquiries, emergencies, or personal matters that you don't wish to put in a private Ed post, you can email us at <a href="mailto:cs336-spr2324-staff@lists.stanford.edu">
+            <b>Contact</b>: Students should ask <i>all</i> course-related questions in the Ed forum, where you will also find announcements. You will find the course Ed on the course Canvas page or in the header link above. For external inquiries, emergencies, or personal matters that you don't wish to put in a private Ed post, you can email us at <a href="mailto:cs336-spr2324-staff@lists.stanford.edu">
               <i>cs336-spr2324-staff@lists.stanford.edu</i>
             </a>. <b>Please send all emails to this mailing list - do not email the instructors directly.</b>
           </li>
@@ -140,13 +140,16 @@
     <ul>
       <li>
         <b>Proficiency in Python</b>
-        <p> We expect the majority of class assignments to be in Python, and students will be given minimal scaffolding. The philosophy of the course is that you don't understand something unless you've built it yourself. </p>
+        <p> We expect the majority of class assignments to be in Python, and students will be given minimal scaffolding. The assignment complexity and size will assume that students are capable Python programmers.</p>
       </li>
+      <li>
+        <b>Experience with deep learning and systems optimization</b>
+        <p> A significant part of the course will involve making neural language models run quickly and efficiently on GPUs across multiple machines. We expect students to be able to have a strong familiarity with PyTorch and know basic systems concepts like the memory hierarchy.
       <li>
         <b>College Calculus, Linear Algebra</b> (e.g. MATH 51, CME 100) <p>You should be comfortable taking (multivariable) derivatives and understanding matrix/vector notation and operations.</p>
       </li>
       <li>
-        <b>Basic Probability and Statistics</b> (e.g. CS 109 or equivalent) <p>You should know the basics of probabilities, gaussian distributions, mean, standard deviation, etc.</p>
+        <b>Basic Probability and Statistics</b> (e.g. CS 109 or equivalent) <p>You should know the basics of probabilities, Gaussian distributions, mean, standard deviation, etc.</p>
       </li>
       <li>
         <b>Foundations of Machine Learning</b> (e.g. CS221, CS229, CS230, CS124, or CS224n) <p>We will be formulating cost functions, taking derivatives and performing optimization with gradient descent. If you already have basic machine learning and/or deep learning knowledge, the course will be easier; however it is possible to take CS 336 without it. There are many introductions to ML, in webpage, book, and video form. One approachable introduction is Hal Daum&eacute;’s in-progress <a href="http://ciml.info">
@@ -166,9 +169,21 @@
         <li>
           <b>There are four assignments in this course</b>: <ul>
             <li>Assignment 1: Basics</li>
-            <li>Assignment 2: Scaling Up</li>
+            <ul> <li> Implement all of the components (tokenizer, optimizer, architecture) necessary to train a standard, high-performance Transformer language model. </li>
+                 <li> Train a minimal language model </li>
+            </ul>
+            <li>Assignment 2: Systems and scaling</li>
+            <ul> <li> Build the framework necessary to perform memory-efficient, distributed optimization of a large scale version of the Assignment 1 model. </li>
+                 <li> Fit and use scaling laws to determine how to scale up the model. </li>
+            </ul>
             <li>Assignment 3: Data</li>
+            <ul> <li> Filter and convert raw common crawl outputs into usable pretraining data </li>
+              <li> Select and weight data to optimize LM performance </li>
+              </ul>
             <li>Assignment 4: Alignment</li>
+            <ul> <li> Build and curate instruction-tuning data for the model </li>
+              <li> Implement and apply RLHF to further optimize the model </li>
+              </ul>
           </ul>
         <li>
           <b>Deadlines</b>: All assignments are due on either a Monday or a Wednesday <i>before class</i> (i.e. before 1:30pm). All deadlines are listed in the <a href="#schedule">schedule</a>.
@@ -225,112 +240,112 @@
       <tbody>
         <tr>
           <td> Mon April 1 </td>
-          <td> Overview, Basics (Tokenization) </td>
+          <td> Overview, Basics  </td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed April 3</td>
-          <td>Basics (Transformers)</td>
+          <td>Basics</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td> Mon April 8 </td>
-          <td>Basics (Training)</td>
+          <td>Basics</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed April 10</td>
-          <td>Basics (Evaluation)</td>
+          <td>Basics</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td> Mon April 15 </td>
-          <td>Scaling (Transformer enhancements)</td>
+          <td>Scaling and systems</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed April 17</td>
-          <td>Scaling (GPUs, memory, FLOPs)</td>
+          <td>Scaling and systems</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Mon April 22</td>
-          <td>Scaling (floating point stability)</td>
+          <td>Scaling and systems</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed April 24</td>
-          <td>Scaling (parallelism)</td>
+          <td>Scaling and systems</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Mon April 29</td>
-          <td>Scaling (FlashAttention)</td>
+          <td>Scaling and systems</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed May 1</td>
-          <td>Scaling (scaling laws)</td>
+          <td>Scaling and systems</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Mon May 6</td>
-          <td>Data (datasets, processing)</td>
+          <td>Data</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed May 8</td>
-          <td>Data (filtering)</td>
+          <td>Data</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Mon May 13</td>
-          <td>Data (deduplication)</td>
+          <td>Data</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed May 15</td>
-          <td>Data (reweighting)</td>
+          <td>Data</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Mon May 20</td>
-          <td>Alignment (SFT)</td>
+          <td>Alignment</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Wed May 22</td>
-          <td>Alignment (RLHF)</td>
+          <td>Alignment</td>
           <td></td>
           <td></td>
           <td></td>
@@ -344,14 +359,14 @@
         </tr>
         <tr>
           <td>Wed May 29</td>
-          <td>Alignment (datasets, annotation)</td>
+          <td>Alignment</td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>Mon June 3</td>
-          <td>Alignment (evaluation, safety)</td>
+          <td>Alignment</td>
           <td></td>
           <td></td>
           <td></td>

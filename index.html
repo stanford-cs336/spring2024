@@ -178,9 +178,9 @@
           <ul> <li> Implement all of the components (tokenizer, model architecture, optimizer) necessary to train a standard Transformer language model. </li>
                <li> Train a minimal language model. </li>
           </ul>
-          <li><b>Assignment 2</b>: Systems and scaling</li>
-          <ul> <li> Build a memory-efficient, distributed version of the Assignment 1 model. </li>
-               <li> Fit and use scaling laws to determine how to scale up the model. </li>
+	  <li><a href="https://github.com/stanford-cs336/spring2024-assignment2-systems"><b>Assignment 2</b>: Systems</a></li>
+	  <ul> <li>Profile and benchmark the model and layers from Assignment 1, and optimize RMSNorm with a custom GPU kernel</li>
+      	       <li>Build a memory-efficient, distributed version of the Assignment 1 model.</li>
           </ul>
           <li><b>Assignment 3</b>: Data</li>
           <ul> <li> Convert raw Common Crawl dumps into usable pretraining data. </li>
@@ -265,7 +265,7 @@
         <tr>
           <td> 1 </td>
           <td> Mon April 1 </td>
-          <td> Overview, tokenization </td>
+          <td> Overview, tokenization (Percy) </td>
           <td> <a href="https://github.com/stanford-cs336/spring2024-lectures/blob/main/lecture_01.py">lecture_01.py</a> </td>
           <td>
             Assignment 1 <b><font color="green">out</font></b>
@@ -279,7 +279,7 @@
         <tr>
           <td> 2 </td>
           <td>Wed April 3</td>
-          <td> Pytorch, resource accounting </td>
+          <td> Pytorch, resource accounting (Percy) </td>
           <td> <a href="https://github.com/stanford-cs336/spring2024-lectures/blob/main/lecture_02.py">lecture_02.py</a> </td>
           <td></td>
           <td></td>
@@ -287,7 +287,7 @@
         <tr>
           <td> 3 </td>
           <td> Mon April 8 </td>
-          <td> Architectures, hyperparameters </td>
+          <td> Architectures, hyperparameters (Tatsu) </td>
           <td> <a href="https://github.com/stanford-cs336/spring2024-lectures/blob/main/nonexecutable/Lecture%203%20-%20architecture.pdf">lecture 3.pdf</a></td>
           <td></td>
           <td></td>
@@ -295,7 +295,7 @@
         <tr>
           <td> 4 </td>
           <td>Wed April 10</td>
-          <td> Mixture of experts </td>
+          <td> Mixture of experts (Tatsu) </td>
           <td> <a href="https://github.com/stanford-cs336/spring2024-lectures/blob/main/nonexecutable/Lecture%204%20-%20details%20%2B%20MoEs.pdf">lecture 4.pdf</a></td>
           <td></td>
           <td></td>
@@ -312,14 +312,19 @@
           <td> 6 </td>
           <td>Wed April 17</td>
           <td>Kernels, Triton (Percy)</td>
-          <td></td>
-          <td></td>
+          <td> <a href="https://github.com/stanford-cs336/spring2024-lectures/blob/main/lecture_06.py">lecture_06.py</a> </td>
+          <td>Assignment 2 <b><font color="green">out</font></b>
+            <br>
+            [<a href="https://github.com/stanford-cs336/spring2024-assignment2-systems">code</a>]
+            <br>
+            [<a href="https://github.com/stanford-cs336/spring2024-assignment2-systems/blob/master/cs336_spring2024_assignment2_systems.pdf">preview</a>]
+	  </td>
           <td></td>
         </tr>
         <tr>
           <td> 7 </td>
           <td>Mon April 22</td>
-          <td>Parallelism (Tatsu))</td>
+          <td>Parallelism (Tatsu)</td>
           <td> <a href="https://github.com/stanford-cs336/spring2024-lectures/blob/main/nonexecutable/Lecture%207%20-%20Parallelism%20basics.pdf">lecture 7.pdf</a></td>
           <td></td>
           <td></td>
@@ -343,15 +348,15 @@
         <tr>
           <td> 10 </td>
           <td>Wed May 1</td>
-          <td>(deep dive)</td>
+          <td>Scaling laws (Tatsu)</td>
           <td></td>
-          <td></td>
+          <td>Assignment 2 <b><font color="red">due</font></b></td>
           <td></td>
         </tr>
         <tr>
           <td> 11 </td>
           <td>Mon May 6</td>
-          <td>Data</td>
+          <td>Data (Percy)</td>
           <td></td>
           <td></td>
           <td></td>
@@ -359,7 +364,7 @@
         <tr>
           <td> 12 </td>
           <td>Wed May 8</td>
-          <td>Data</td>
+          <td>Data (Percy)</td>
           <td></td>
           <td></td>
           <td></td>
@@ -367,7 +372,7 @@
         <tr>
           <td> 13 </td>
           <td>Mon May 13</td>
-          <td>(deep dive)</td>
+          <td>Data (Percy)</td>
           <td></td>
           <td></td>
           <td></td>
@@ -375,7 +380,7 @@
         <tr>
           <td> 14 </td>
           <td>Wed May 15</td>
-          <td>(deep dive)</td>
+          <td>Data (Percy)</td>
           <td></td>
           <td></td>
           <td></td>
@@ -383,7 +388,7 @@
         <tr>
           <td> 15 </td>
           <td>Mon May 20</td>
-          <td>Alignment</td>
+          <td>Alignment (Tatsu)</td>
           <td></td>
           <td></td>
           <td></td>
@@ -391,7 +396,7 @@
         <tr>
           <td> 16 </td>
           <td>Wed May 22</td>
-          <td>Alignment</td>
+          <td>Alignment (Tatsu)</td>
           <td></td>
           <td></td>
           <td></td>
@@ -407,7 +412,7 @@
         <tr>
           <td> 17 </td>
           <td>Wed May 29</td>
-          <td>(deep dive)</td>
+          <td>Alignment</td>
           <td></td>
           <td></td>
           <td></td>
@@ -415,7 +420,7 @@
         <tr>
           <td> 18 </td>
           <td>Mon June 3</td>
-          <td>(deep dive)</td>
+          <td>Alignment</td>
           <td></td>
           <td></td>
           <td></td>
